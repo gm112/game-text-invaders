@@ -1,0 +1,47 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "allowJs": true,
+    "checkJs": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "declarationMap": true,
+    // "inlineSourceMap": true,
+    "isolatedModules": true,
+    "useDefineForClassFields": true,
+    "composite": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "preserveSymlinks": true,
+    "allowArbitraryExtensions": true,
+    "allowUnusedLabels": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "useUnknownInCatchVariables": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "verbatimModuleSyntax": true,
+    "lib": [
+      "ESNext",
+      "ESNext.Array",
+      "ESNext.Collection",
+      "DOM",
+      "DOM.Iterable",
+      "DOM.AsyncIterable"
+    ],
+    "module": "ESNext",
+    "moduleDetection": "force",
+    "moduleResolution": "Bundler",
+    "sourceMap": true,
+    "target": "ES2023",
+    "customConditions": ["source"],
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "@bluedreamers/saturn-core/*": ["../saturn/core/src/*"],
+      "@bluedreamers/saturn-game-template/*": ["../saturn/game-template/src/*"],
+    }
+  },
+  "include": ["../saturn/**/*", "../game/**/*"]
+}
