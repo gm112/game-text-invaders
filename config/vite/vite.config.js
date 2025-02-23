@@ -4,7 +4,7 @@ import { defineConfig } from 'vite'
  * @type {import('vite').UserConfig}
  */
 export default defineConfig({
-  base: process.env['CI'] ? '/text-invaders/' : '/',
+  base: process.env['CI'] ? '/game-text-invaders/' : '/',
   resolve: {
     alias: {
       '@core': './saturn/core/src',
