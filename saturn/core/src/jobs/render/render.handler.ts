@@ -21,7 +21,7 @@ const render_workers = new Map<
   { thread: type_render_thread; worker: Worker }
 >()
 
-export default function render_worker_thread(): type_render_thread {
+export default function render_worker_handler(): type_render_thread {
   const worker_id = crypto.randomUUID()
   const worker = new render_worker()
   const $worker_messages = fromEvent<MessageEvent>(worker, 'message').pipe(

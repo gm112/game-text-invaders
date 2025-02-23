@@ -9,7 +9,7 @@ const entity_workers = new Map<
   { thread: type_thread; worker: Worker }
 >()
 
-export default function entity_worker_thread(): type_thread {
+export default function entity_worker_handler(): type_thread {
   const worker_id = crypto.randomUUID()
   const worker = new entity_worker()
   const $worker_messages = fromEvent<MessageEvent>(worker, 'message').pipe(

@@ -1,6 +1,6 @@
 import { BehaviorSubject, filter, switchMap } from 'rxjs'
-import entity_worker_thread from './jobs/entity/entity.thread.js'
-import render_worker_thread from './jobs/render/render.thread.js'
+import entity_worker_handler from './jobs/entity/entity.worker.handler.js'
+import render_worker_handler from './jobs/render/render.handler.js'
 
 export interface type_options_create_saturn_game<type_game_state> {
   state: type_game_state
@@ -30,15 +30,16 @@ export function create_saturn_game<type_game_state>({
       }
 
       $kill_game_loop.unsubscribe()
+      $game_loop.complete()
     })
 
   const entity_workers = new Map<
     number,
-    ReturnType<typeof entity_worker_thread>
+    ReturnType<typeof entity_worker_handler>
   >()
   const render_workers = new Map<
     number,
-    ReturnType<typeof render_worker_thread>
+    ReturnType<typeof render_worker_handler>
   >()
 
   if (min_workers && min_workers > max_workers)
@@ -47,12 +48,19 @@ export function create_saturn_game<type_game_state>({
 
   console.debug('[saturn-core] create_saturn_game(): creating worker threads')
   for (let index = 0; index < min_workers; index++)
-    entity_workers.set(index, entity_worker_thread())
+    entity_workers.set(index, entity_worker_handler())
 
   // For now, just have a single render worker.
-  render_workers.set(0, render_worker_thread())
+  render_workers.set(0, render_worker_handler())
 
   console.debug('[saturn-core] create_saturn_game(): initializing game loop')
+
+  if (import.meta.hot) {
+    import.meta.hot.dispose(() => {
+      console.debug('[saturn-core] module reloaded:', module)
+      $pause_state.next(undefined)
+    })
+  }
 
   return {
     $game_loop: $pause_state.pipe(
@@ -62,3 +70,5 @@ export function create_saturn_game<type_game_state>({
     $pause_state,
   }
 }
+
+export type type_create_saturn_game_function = typeof create_saturn_game
