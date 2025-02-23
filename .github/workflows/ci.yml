@@ -30,6 +30,12 @@ jobs:
         with:
           enablement: true
 
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: preview-${{ github.ref_name }}
+          path: dist/
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
