@@ -3,7 +3,7 @@ import { fromEvent, map } from 'rxjs'
 import render_worker from './render.worker.js?worker'
 import {
   encode_render_data,
-  type render_data,
+  type type_render_data,
 } from './reactive/entity-buffer.js'
 import type { type_thread } from '../../primitives/threads/thread.primitive.js'
 import { start_worker, stop_worker } from '../thread.manager.js'
@@ -13,7 +13,7 @@ export type type_render_thread = Omit<
   'start' | 'tick'
 > & {
   start(canvas: HTMLCanvasElement): void
-  tick(entities: render_data[]): void
+  tick(entities: type_render_data[]): void
 }
 
 const render_workers = new Map<
@@ -32,7 +32,7 @@ export default function render_worker_thread(): type_render_thread {
     start_worker(worker, canvas.transferControlToOffscreen())
   }
 
-  function tick(entities: render_data[]) {
+  function tick(entities: type_render_data[]) {
     const payload = new Uint8Array(encode_render_data(entities))
     worker.postMessage({ type: 'tick', payload }, [payload])
   }

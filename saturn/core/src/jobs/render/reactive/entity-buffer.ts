@@ -1,4 +1,4 @@
-export interface render_data {
+export interface type_render_data {
   entity_id: string
   position: {
     x: number
@@ -54,7 +54,9 @@ export const get_string_id = (numeric_id: number): string => {
 }
 
 // Main buffer encoding/decoding functions
-export const encode_render_data = (entities: render_data[]): ArrayBuffer => {
+export const encode_render_data = (
+  entities: type_render_data[],
+): ArrayBuffer => {
   const buffer = new ArrayBuffer(render_data_size * entities.length)
   const data_view = new DataView(buffer)
 
@@ -79,10 +81,12 @@ export const encode_render_data = (entities: render_data[]): ArrayBuffer => {
   return buffer
 }
 
-export const decode_entity_buffer = (buffer: ArrayBuffer): render_data[] => {
+export const decode_entity_buffer = (
+  buffer: ArrayBuffer,
+): type_render_data[] => {
   const data_view = new DataView(buffer)
   const entity_count = buffer.byteLength / render_data_size
-  const entities: render_data[] = []
+  const entities: type_render_data[] = []
 
   for (let i = 0; i < entity_count; i++) {
     const offset = i * render_data_size

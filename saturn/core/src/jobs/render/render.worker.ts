@@ -7,7 +7,7 @@ import {
   $entity_state,
 } from './reactive/entity-buffer.subject.js'
 import { $render_context } from './reactive/render-context.subject.js'
-import type { render_data } from './reactive/entity-buffer.js'
+import type { type_render_data } from './reactive/entity-buffer.js'
 
 self.onmessage = (event: MessageEvent<type_render_job_message>) => {
   const { type, payload } = event.data
@@ -23,7 +23,7 @@ self.onmessage = (event: MessageEvent<type_render_job_message>) => {
 }
 
 function render_entity(
-  entity: render_data,
+  entity: type_render_data,
   context: OffscreenCanvasRenderingContext2D,
 ) {
   if (!entity.visible) return
