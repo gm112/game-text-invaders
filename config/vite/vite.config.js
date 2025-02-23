@@ -13,6 +13,7 @@ export default defineConfig({
     },
   },
   build: {
+    target: 'esnext',
     minify: true,
     rollupOptions: {
       output: {
@@ -22,5 +23,8 @@ export default defineConfig({
         format: 'esm',
       },
     },
+  },
+  worker: {
+    format: 'es',
   },
 })

@@ -1,5 +1,4 @@
 /// <reference types="vite/client" />
-
 import type { type_job_message } from '../../primitives/messages/job-message.primitive.js'
 
 self.onmessage = (event: MessageEvent<type_job_message<ArrayBuffer>>) => {
