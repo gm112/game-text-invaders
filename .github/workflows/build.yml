@@ -1,12 +1,25 @@
 # make this a resuable workflow for running pnpm install and build
 on:
   workflow_call:
+    inputs:
+      deploy:
+        required: false
+        type: boolean
+        default: false
+        description: Whether to deploy the built project to GitHub Pages
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Setup Pages
+        if: inputs.deploy
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
       - uses: pnpm/action-setup@v4
         name: Install pnpm
 
@@ -24,3 +37,28 @@ jobs:
       # Build the Vite project
       - name: Build project (production)
         run: pnpm build
+
+      - name: Upload build to pages
+        if: inputs.deploy
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/
+
+        # deploy:
+        #   runs-on: ubuntu-latest
+        #   environment:
+        #     name: ${{ github.ref_name == 'main' && 'github-pages' || github.ref_name }}
+        #     url: ${{ steps.deployment.outputs.page_url }}
+
+        #   steps:
+        #     - name: Checkout repository
+        #       uses: actions/checkout@v4
+
+        #     - name: Upload static files as artifact
+        #       uses: actions/upload-pages-artifact@v3
+        #       with:
+        #         path: dist/
+
+        #     - name: Deploy to GitHub Pages
+        #       id: deployment
+        #       uses: actions/deploy-pages@v4
