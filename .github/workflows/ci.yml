@@ -10,13 +10,13 @@ jobs:
     with:
       deploy: true
       dist_path: saturn/game-template/dist/
-      artifact_name: github-pages
+      artifact_name: github-pages-preview
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
     environment:
-      name: github-pages
+      name: github-pages-preview
       url: ${{ steps.deployment.outputs.page_url }}
     permissions:
       pages: write
@@ -35,12 +35,12 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: github-pages
+          name: github-pages-preview
           path: saturn/game-template/dist/
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          artifact_name: github-pages
+          artifact_name: github-pages-preview
           preview: ${{ github.ref_name != 'main' }}
