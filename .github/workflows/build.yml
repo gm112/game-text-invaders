@@ -17,7 +17,8 @@ on:
         type: string
         default: preview-${{ github.sha }}
         description: The name of the artifact to upload. Defaults to preview-${branch_name}
-
+env:
+  CI: true
 jobs:
   build:
     runs-on: ubuntu-latest
