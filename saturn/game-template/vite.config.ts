@@ -37,6 +37,9 @@ function workerChunkPlugin(): Plugin {
 export default mergeConfig(config, {
   publicDir: './public/',
   plugins: [workerChunkPlugin()],
+  build: {
+    sourcemap: true,
+  },
   // build: {
   //   rollupOptions: {
   //     output: {
