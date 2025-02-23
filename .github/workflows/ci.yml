@@ -9,6 +9,7 @@ jobs:
     name: Build project
 
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     environment:
       name: preview-${{ github.ref_name }}
