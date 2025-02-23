@@ -12,6 +12,11 @@ on:
         type: string
         default: dist/
         description: The path to the built project. Defaults to dist/
+      artifact_name:
+        required: false
+        type: string
+        default: preview-${{ github.ref_name }}
+        description: The name of the artifact to upload. Defaults to preview-${branch_name}
 
 jobs:
   build:
@@ -48,3 +53,4 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ${{ inputs.dist_path }}
+          name: ${{ inputs.artifact_name }}

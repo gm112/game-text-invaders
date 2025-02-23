@@ -10,6 +10,7 @@ jobs:
     with:
       deploy: true
       dist_path: saturn/game-template/dist/
+      artifact_name: preview-${{ github.ref_name }}
 
   deploy:
     needs: build
