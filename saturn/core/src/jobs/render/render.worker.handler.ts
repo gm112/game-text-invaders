@@ -5,11 +5,11 @@ import {
   encode_render_data,
   type type_render_data,
 } from './reactive/entity-buffer.js'
-import type { type_thread } from '../../primitives/threads/thread.primitive.js'
+import type { type_worker_handler } from '../../primitives/threads/worker-handler.primitive.js'
 import { start_worker, stop_worker } from '../thread.manager.js'
 
 export type type_render_thread = Omit<
-  type_thread<ArrayBuffer>,
+  type_worker_handler<ArrayBuffer>,
   'start' | 'tick'
 > & {
   start(canvas: HTMLCanvasElement): void
@@ -42,18 +42,19 @@ export default function render_worker_handler(): type_render_thread {
     render_workers.delete(worker_id)
   }
 
+  function kill_all_humans() {
+    for (const worker of render_workers.values()) worker.thread.stop()
+    render_workers.clear()
+  }
+
   const thread = {
     start,
     tick,
     stop,
+    kill_all_humans,
     $worker_messages,
   }
 
   render_workers.set(worker_id, { thread, worker })
   return thread
-}
-
-export function destroy_all_render_workers() {
-  for (const worker of render_workers.values()) worker.thread.stop()
-  render_workers.clear()
 }

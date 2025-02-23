@@ -1,6 +1,6 @@
 import { BehaviorSubject, filter, switchMap } from 'rxjs'
 import entity_worker_handler from './jobs/entity/entity.worker.handler.js'
-import render_worker_handler from './jobs/render/render.handler.js'
+import render_worker_handler from './jobs/render/render.worker.handler.js'
 
 export interface type_options_create_saturn_game<type_game_state> {
   state: type_game_state
