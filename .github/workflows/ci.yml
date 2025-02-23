@@ -14,6 +14,10 @@ jobs:
     environment:
       name: preview-${{ github.ref_name }}
       url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+      contents: read
 
     steps:
       - name: Checkout repository
