@@ -1,0 +1,7 @@
+{
+  "extends": "@gm112/text-invaders-config-tsconfig/tsconfig.base.json",
+  "include": ["vite.config.ts"],
+  "compilerOptions": {
+    "outDir": "./dist"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "typescript.tsdk": "node_modules/@gm112/text-invaders-config-tsconfig/node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true
+  }
+}

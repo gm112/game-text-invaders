@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "name": "@gm112/text-invaders-config-vite",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "vite.config.ts",
+  "keywords": [],
+  "author": "",
+  "license": "BSD-3-Clause",
+  "files": [
+    "vite.config.ts"
+  ],
+  "scripts": {
+    "format": "prettier --write ."
+  },
+  "packageManager": "pnpm@10.4.1",
+  "devDependencies": {
+    "vite": "^6.1.1",
+    "@gm112/text-invaders-config-tsconfig": "workspace:*",
+    "@gm112/text-invaders-config-prettier": "workspace:*"
+  }
+}

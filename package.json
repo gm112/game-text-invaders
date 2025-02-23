@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "name": "@gm112/text-invaders",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "BSD-3-Clause",
+  "packageManager": "pnpm@10.4.1",
+  "devDependencies": {
+    "@gm112/text-invaders-config-prettier": "workspace:*",
+    "@gm112/text-invaders-config-tsconfig": "workspace:*",
+    "@gm112/text-invaders-config-vite": "workspace:*"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}
