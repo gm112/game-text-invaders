@@ -1,7 +1,6 @@
-// import { create_game_loop } from '@bluedreamers/saturn-core/game-loop'
-import { create_game_loop } from '@bluedreamers/saturn-core/game-loop.js'
+import { create_saturn_game } from '@bluedreamers/saturn-core/kernel.js'
 
-const { $game_loop } = create_game_loop({
+const { $game_loop } = create_saturn_game({
   max_workers: navigator.hardwareConcurrency ?? 1,
   state: {
     player_hp: 100,
@@ -10,5 +9,5 @@ const { $game_loop } = create_game_loop({
 })
 
 $game_loop.subscribe((state) => {
-  console.log(state)
+  console.log('[game] state:', state)
 })

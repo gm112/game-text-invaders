@@ -9,7 +9,8 @@
   },
   "scripts": {
     "format": "prettier --write .",
-    "dev": "vite"
+    "dev": "vite",
+    "build": "vite build"
   },
   "keywords": [],
   "author": "",

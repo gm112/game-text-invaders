@@ -1,6 +1,13 @@
 import config from '@gm112/text-invaders-config-vite'
-import { mergeConfig } from 'vite'
+import { mergeConfig, type UserConfig } from 'vite'
 
 export default mergeConfig(config, {
-  root: 'public',
-})
+  publicDir: './public/',
+  // build: {
+  //   rollupOptions: {
+  //     input: {
+  //       main: './public/index.html',
+  //     }
+  //   }
+  // },
+} satisfies UserConfig)

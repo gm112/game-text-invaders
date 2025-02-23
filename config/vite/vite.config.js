@@ -11,4 +11,14 @@ export default defineConfig({
       '@editor': './saturn/editor/src',
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        entryFileNames: '[name]-[hash].mjs',
+        chunkFileNames: '[name]-[hash].mjs',
+        assetFileNames: 'assets/[name]-[hash].[ext]',
+        format: 'esm',
+      },
+    },
+  },
 })

@@ -2,6 +2,7 @@
 import { fromEvent, map } from 'rxjs'
 import entity_worker from './entity.worker.js?worker'
 import type { type_thread } from '../../primitives/threads/thread.primitive.js'
+import { start_worker, stop_worker } from '../thread.manager.js'
 
 const entity_workers = new Map<
   string,
@@ -16,7 +17,7 @@ export default function entity_worker_thread(): type_thread {
   )
 
   function start() {
-    worker.postMessage({ type: 'wakeup' })
+    start_worker(worker)
   }
 
   function tick() {
@@ -24,12 +25,7 @@ export default function entity_worker_thread(): type_thread {
   }
 
   function stop() {
-    try {
-      worker.postMessage({ type: 'die' })
-      worker.terminate()
-    } catch (error) {
-      console.error(error)
-    }
+    stop_worker(worker)
     entity_workers.delete(worker_id)
   }
 

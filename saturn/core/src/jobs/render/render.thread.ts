@@ -6,6 +6,7 @@ import {
   type render_data,
 } from './reactive/entity-buffer.js'
 import type { type_thread } from '../../primitives/threads/thread.primitive.js'
+import { start_worker, stop_worker } from '../thread.manager.js'
 
 export type type_render_thread = Omit<
   type_thread<ArrayBuffer>,
@@ -28,12 +29,7 @@ export default function render_worker_thread(): type_render_thread {
   )
 
   function start(canvas: HTMLCanvasElement) {
-    const offscreen_context = canvas.transferControlToOffscreen()
-    worker.postMessage({ type: 'wakeup', payload: offscreen_context }, [
-      offscreen_context,
-    ])
-
-    return
+    start_worker(worker, canvas.transferControlToOffscreen())
   }
 
   function tick(entities: render_data[]) {
@@ -42,12 +38,7 @@ export default function render_worker_thread(): type_render_thread {
   }
 
   function stop() {
-    try {
-      worker.postMessage({ type: 'die' })
-      worker.terminate()
-    } catch (error) {
-      console.error(error)
-    }
+    stop_worker(worker)
     render_workers.delete(worker_id)
   }
 
