@@ -1,4 +1,4 @@
-import { BehaviorSubject, filter } from 'rxjs'
+import { BehaviorSubject, filter, switchMap } from 'rxjs'
 import entity_worker_thread from './jobs/entity/entity.thread.js'
 import render_worker_thread from './jobs/render/render.thread.js'
 
@@ -55,7 +55,10 @@ export function create_saturn_game<type_game_state>({
   console.debug('[saturn-core] create_saturn_game(): initializing game loop')
 
   return {
-    $game_loop: $game_loop.asObservable(),
+    $game_loop: $pause_state.pipe(
+      filter((pause_state) => !pause_state),
+      switchMap(() => $game_loop),
+    ),
     $pause_state,
   }
 }
