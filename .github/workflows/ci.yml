@@ -7,6 +7,8 @@ jobs:
   build:
     uses: ./.github/workflows/build.yml
     name: Build project
+    with:
+      deploy: true
 
   deploy:
     needs: build
