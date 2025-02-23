@@ -1,22 +1,19 @@
 {
   "private": true,
   "type": "module",
-  "name": "@bluedreamers/saturn-core",
+  "name": "@bluedreamers/saturn-game-template",
   "version": "1.0.0",
   "description": "",
   "exports": {
-    "./*": "./src/*"
+    ".": "./src/game.ts"
   },
   "scripts": {
     "format": "prettier --write .",
-    "build": "vite build"
+    "dev": "vite"
   },
   "keywords": [],
   "author": "",
   "license": "BSD-3-Clause",
-  "files": [
-    "src"
-  ],
   "packageManager": "pnpm@10.4.1",
   "dependencies": {
     "rxjs": "^8.0.0-alpha.10"
@@ -24,6 +21,7 @@
   "devDependencies": {
     "@gm112/text-invaders-config-tsconfig": "workspace:*",
     "@gm112/text-invaders-config-prettier": "workspace:*",
-    "@gm112/text-invaders-config-vite": "workspace:*"
+    "@gm112/text-invaders-config-vite": "workspace:*",
+    "@bluedreamers/saturn-core": "workspace:*"
   }
 }

@@ -58,6 +58,25 @@ importers:
         specifier: workspace:*
         version: link:../../config/vite
 
+  saturn/game-template:
+    dependencies:
+      rxjs:
+        specifier: ^8.0.0-alpha.10
+        version: 8.0.0-alpha.14
+    devDependencies:
+      '@bluedreamers/saturn-core':
+        specifier: workspace:*
+        version: link:../core
+      '@gm112/text-invaders-config-prettier':
+        specifier: workspace:*
+        version: link:../../config/prettier
+      '@gm112/text-invaders-config-tsconfig':
+        specifier: workspace:*
+        version: link:../../config/tsconfig
+      '@gm112/text-invaders-config-vite':
+        specifier: workspace:*
+        version: link:../../config/vite
+
 packages:
 
   '@esbuild/aix-ppc64@0.24.2':

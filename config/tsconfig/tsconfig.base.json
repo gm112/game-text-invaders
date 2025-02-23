@@ -39,9 +39,8 @@
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
-      "@core/*": ["../saturn/core/src/*"],
-      "@game-template/*": ["../saturn/game-template/src/*"],
-      "@editor/*": ["../saturn/editor/src/*"]
+      "@bluedreamers/saturn-core/*": ["../saturn/core/src/*"],
+      "@bluedreamers/saturn-game-template/*": ["../saturn/game-template/src/*"],
     }
   },
   "include": ["../saturn/**/*", "../game/**/*"]

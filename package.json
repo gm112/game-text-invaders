@@ -1,5 +1,6 @@
 {
   "private": true,
+  "type": "module",
   "name": "@gm112/text-invaders",
   "version": "1.0.0",
   "description": "",

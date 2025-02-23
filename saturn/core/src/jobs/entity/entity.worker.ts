@@ -1,30 +1,16 @@
 /// <reference types="vite/client" />
-import { fromEvent, map } from 'rxjs'
-import entity_worker_thread from './entity.job.js?worker'
 
-export default function entity_worker() {
-  const worker = new entity_worker_thread()
-  const $worker_messages = fromEvent<MessageEvent>(worker, 'message').pipe(
-    map((event) => ({ worker: 'entity', message: event })),
-  )
+import type { type_job_message } from '../../primitives/messages/job-message.primitive.js'
 
-  function start() {
-    worker.postMessage({ type: 'wakeup' })
-  }
-
-  function tick() {
-    worker.postMessage({ type: 'tick' })
-  }
-
-  function stop() {
-    worker.postMessage({ type: 'die' })
-    worker.terminate()
-  }
-
-  return {
-    start,
-    tick,
-    stop,
-    $worker_messages,
-  }
+self.onmessage = (event: MessageEvent<type_job_message<ArrayBuffer>>) => {
+  const { type, payload } = event.data
+  if (type === 'wakeup') {
+    const entity_definitions = new Uint8Array(payload)
+    console.log(entity_definitions)
+  } else if (type === 'tick') {
+    console.log('tick')
+  } else if (type === 'die') {
+    console.log('die')
+    self.close()
+  } else throw new Error(`Unknown message type: ${type}`)
 }
