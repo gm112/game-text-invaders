@@ -7,3 +7,22 @@ jobs:
   build:
     uses: ./.github/workflows/build.yml
     name: Build project
+
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: preview-${{ github.ref_name }}
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
