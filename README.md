@@ -34,7 +34,7 @@ This is a text-based game built with Saturn.mkIV.
 
 ## Contributing
 
-Contributions are welcome, but bear in mind this is just a hobby project. Feel free to fork it, push it, pull it, and then bop it.
+Contributions are welcome, but bear in mind this is just a hobby project. Feel free to fork it, pull it, push it, and then bop it.
 
 ## License
 
