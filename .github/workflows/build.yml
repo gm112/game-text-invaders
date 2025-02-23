@@ -15,7 +15,7 @@ on:
       artifact_name:
         required: false
         type: string
-        default: preview-${{ github.ref_name }}
+        default: preview-${{ github.sha }}
         description: The name of the artifact to upload. Defaults to preview-${branch_name}
 
 jobs:

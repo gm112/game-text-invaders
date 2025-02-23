@@ -10,7 +10,7 @@ jobs:
     with:
       deploy: true
       dist_path: saturn/game-template/dist/
-      artifact_name: preview-${{ github.ref_name }}
+      artifact_name: preview-${{ github.sha }}
 
   deploy:
     needs: build
@@ -35,7 +35,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: preview-${{ github.ref_name }}
+          name: preview-${{ github.sha }}
           path: saturn/game-template/dist/
 
       - name: Deploy to GitHub Pages
