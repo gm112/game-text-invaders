@@ -60,7 +60,8 @@ export const encode_render_data = (
   const buffer = new ArrayBuffer(render_data_size * entities.length)
   const data_view = new DataView(buffer)
 
-  entities.forEach((entity, index) => {
+  for (let index = 0; index < entities.length; index++) {
+    const entity = entities[index]!
     const offset = index * render_data_size
 
     // Convert string ID to number for efficient transfer
@@ -76,7 +77,7 @@ export const encode_render_data = (
     data_view.setUint32(offset + 24, entity.sprite_index)
     data_view.setUint8(offset + 28, entity.visible ? 1 : 0)
     data_view.setFloat32(offset + 29, entity.alpha)
-  })
+  }
 
   return buffer
 }
