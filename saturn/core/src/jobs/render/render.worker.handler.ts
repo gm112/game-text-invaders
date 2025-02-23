@@ -9,7 +9,7 @@ import type { type_worker_handler } from '../../primitives/threads/worker-handle
 import { start_worker, stop_worker } from '../thread.manager.js'
 
 export type type_render_thread = Omit<
-  type_worker_handler<ArrayBuffer>,
+  type_worker_handler<SharedArrayBuffer>,
   'start' | 'tick'
 > & {
   start(canvas: HTMLCanvasElement): void
