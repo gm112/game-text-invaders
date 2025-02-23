@@ -17,9 +17,8 @@
   "files": [
     "src"
   ],
-  "packageManager": "pnpm@10.4.1",
   "dependencies": {
-    "rxjs": "^8.0.0-alpha.10"
+    "rxjs": "^8.0.0-alpha.14"
   },
   "devDependencies": {
     "@gm112/text-invaders-config-tsconfig": "workspace:*",
