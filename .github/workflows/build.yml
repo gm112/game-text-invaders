@@ -7,6 +7,11 @@ on:
         type: boolean
         default: false
         description: Whether to deploy the built project to GitHub Pages
+      dist_path:
+        required: false
+        type: string
+        default: dist/
+        description: The path to the built project. Defaults to dist/
 
 jobs:
   build:
@@ -42,4 +47,4 @@ jobs:
         if: inputs.deploy
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/
+          path: ${{ inputs.dist_path }}

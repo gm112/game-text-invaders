@@ -9,6 +9,7 @@ jobs:
     name: Build project
     with:
       deploy: true
+      dist_path: saturn/game-template/dist/
 
   deploy:
     needs: build
@@ -34,7 +35,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: preview-${{ github.ref_name }}
-          path: dist/
+          path: saturn/game-template/dist/
 
       - name: Deploy to GitHub Pages
         id: deployment
