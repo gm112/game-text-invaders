@@ -1,8 +1,7 @@
 /// <reference types="vite/client" />
-
 import type { type_job_message } from '../../primitives/messages/job-message.primitive.js'
 
-self.onmessage = (event: MessageEvent<type_job_message<ArrayBuffer>>) => {
+self.onmessage = (event: MessageEvent<type_job_message<SharedArrayBuffer>>) => {
   const { type, payload } = event.data
   if (type === 'wakeup') {
     const entity_definitions = new Uint8Array(payload)

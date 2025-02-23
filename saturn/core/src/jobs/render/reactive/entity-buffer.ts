@@ -56,8 +56,8 @@ export const get_string_id = (numeric_id: number): string => {
 // Main buffer encoding/decoding functions
 export const encode_render_data = (
   entities: type_render_data[],
-): ArrayBuffer => {
-  const buffer = new ArrayBuffer(render_data_size * entities.length)
+): SharedArrayBuffer => {
+  const buffer = new SharedArrayBuffer(render_data_size * entities.length)
   const data_view = new DataView(buffer)
 
   for (let index = 0; index < entities.length; index++) {
@@ -83,7 +83,7 @@ export const encode_render_data = (
 }
 
 export const decode_entity_buffer = (
-  buffer: ArrayBuffer,
+  buffer: SharedArrayBuffer,
 ): type_render_data[] => {
   const data_view = new DataView(buffer)
   const entity_count = buffer.byteLength / render_data_size

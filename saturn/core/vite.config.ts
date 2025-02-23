@@ -1,7 +1,7 @@
 import config from '@gm112/text-invaders-config-vite'
-import { mergeConfig } from 'vite'
+import { mergeConfig, type UserConfig } from 'vite'
 
-export default mergeConfig(config, {
+const saturn_config: UserConfig = {
   build: {
     lib: {
       entry: 'src/kernel.ts',
@@ -16,4 +16,9 @@ export default mergeConfig(config, {
       },
     },
   },
-})
+  optimizeDeps: {
+    exclude: ['rxjs'],
+  },
+}
+
+export default mergeConfig(config, saturn_config)

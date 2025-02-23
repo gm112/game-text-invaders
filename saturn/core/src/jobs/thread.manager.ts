@@ -12,7 +12,7 @@ export function stop_worker(worker: Worker) {
   try {
     console.debug('[saturn-core] stop_worker(): stopping worker...')
     worker.postMessage({ type: 'die' })
-    worker.terminate()
+    //worker.terminate()
   } catch (error) {
     console.error(error)
   }
