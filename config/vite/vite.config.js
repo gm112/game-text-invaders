@@ -12,6 +12,7 @@ export default defineConfig({
     },
   },
   build: {
+    minify: true,
     rollupOptions: {
       output: {
         entryFileNames: '[name]-[hash].mjs',

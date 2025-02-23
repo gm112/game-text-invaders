@@ -1,0 +1,27 @@
+# make this a resuable workflow for running pnpm install and build
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          run_install: false
+
+      # Set up Node.js (using the latest LTS version)
+      - name: Set up Node.js (LTS)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*' # Use the latest LTS version of Node.js
+          cache: 'pnpm'
+
+      # Install dependencies using pnpm
+      - name: Install dependencies
+        run: corepack enable && pnpm install
+
+      # Build the Vite project
+      - name: Build project (production)
+        run: pnpm build
